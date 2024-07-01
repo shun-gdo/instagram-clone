@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    // ＊投稿できるようになり次第追加:投稿があればforeachで表示
+    <!--＊投稿できるようになり次第追加:投稿があればforeachで表示-->
     @if(true)
         <p>ここに投稿一覧が表示されます</p>
     @else
@@ -15,4 +15,7 @@
             </div>
         </div>
     @endif
+   
+            @include('posts.create_post')
+
 @endsection
