@@ -1,24 +1,3 @@
- <!--<button class="btn btn-primary" onlick="create_post_modal.showModal()">+</button>-->
- <!--   <dialog id="create_post_modal" class="modal">-->
- <!--       <div class="modal-box">-->
- <!--           <h2>投稿作成フォーム</h2>-->
- <!--       <div class="modal-action">    -->
- <!--       <form method="dialog">-->
- <!--           <form action="/" method="post" enctype='multipart/form-data'>-->
- <!--               @csrf-->
- <!--               <input type="file" name="image" />-->
- <!--               <textarea rows="3" name="caption" class="input input-bordered" />-->
- <!--               <button type="submit" class="btn btn-primary btn-block">submit</button>-->
- <!--           </form>-->
-            
-            
-            <!-- if there is a button in form, it will close the modal -->
- <!--           <button class="btn">Close</button>-->
- <!--           </form>-->
- <!--       </div>-->
- <!--       </div>-->
- <!--   </dialog>-->
- 
 <button class="btn" onclick="create_post_modal.showModal()">open modal</button>
 <dialog id="create_post_modal" class="modal">
   <div class="modal-box bg-white rounded px-7 relative">
