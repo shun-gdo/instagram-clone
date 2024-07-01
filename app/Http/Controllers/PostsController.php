@@ -10,6 +10,29 @@ class PostsController extends Controller
 {
     //
     
+    public function index()
+    {
+        $data = [];
+        if (\Auth::check()) { // 認証済みの場合
+            // 認証済みユーザーを取得
+            $user = \Auth::user();
+            // ユーザーの投稿の一覧を作成日時の降順で取得
+            // （後のChapterで他ユーザーの投稿も取得するように変更しますが、現時点ではこのユーザーの投稿のみ取得します）
+            $posts = $user->posts()->orderBy('created_at', 'desc')->paginate(10);
+
+            $data = [
+                'user' => $user,
+                'posts' => $posts,
+            ];
+        }
+        
+        // dashboardビューでそれらを表示
+        return view('dashboard',[
+            'user' => $user,
+            'posts'=>$posts,
+            ]);
+    }
+    
     public function store(Request $request){
         
         
@@ -19,16 +42,15 @@ class PostsController extends Controller
         
         $user_post_count = $user->posts()->count();
         
-        $image_name = "{$user_id}_{$user_post_count}";
         $file = $request->file('file_image');
-        $image_ext = $file->getClientOriginalExtension();
-        $file->storeAs('public/images/',"{$image_name}.{$image_ext}");
+        $img_ext = $file->getClientOriginalExtension();
+        $img_name = "{$user_id}_{$user_post_count}.{$img_ext}";
+        $file->storeAs('public/images/',$img_name);
 
         $request->user()->posts()->create([
             'user_id' => $user->id,
             'caption' => $request->caption,
-            'img_path' => $image_name,
-            'img_ext' => $image_ext,
+            'img_name' => $img_name,
             ]);
     
         return back();

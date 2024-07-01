@@ -9,7 +9,7 @@ class Posts extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['img_path','img_ext'];
+    protected $fillable = ['img_name'];
     
     public function user(){
         return $this->belongsTo(User::class);

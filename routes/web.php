@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
+    Route::get('/',[PostsController::class,'index']);
 });
     Route::resource('posts',PostsController::class,['only' => ['store']])->names(['posts.store']);
 
