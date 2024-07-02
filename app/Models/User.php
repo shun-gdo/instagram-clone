@@ -102,4 +102,12 @@ class User extends Authenticatable
         return Posts::whereIn('user_id',$userIds);
     }
     
+    public function scopeSearch($query,$searchTerm){
+        return $query->where(function($query) use ($searchTerm) {
+            $query->where('name', 'like', '%' . $searchTerm . '%')
+                  ->orWhere('email', 'like', '%' . $searchTerm . '%')
+                  ->orWhere('id', 'like', '%' . $searchTerm . '%');
+        });
+    }
+    
 }

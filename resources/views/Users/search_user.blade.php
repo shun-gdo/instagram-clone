@@ -1,8 +1,13 @@
 @extends('layouts.app')
 @section('content')
     <div>
+        <form action="{{ route('search') }}" method="GET">
         <label class="input input-bordered flex justify-between items-center gap-2">
-            <input type="text" class="grow" placeholder="Search" />
+            @if(isset($initilaValue))
+            <input type="text" class="grow" placeholder="Search" value="{{ $initilaValue }}" />
+            @else
+            <input name="search" type="text" class="grow" placeholder="Search" />
+            @endif
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
@@ -14,5 +19,14 @@
                 clip-rule="evenodd" />
             </svg>
         </label>
+        </form>
+        
+        @if(isset($users))
+            @foreach ($users as $user)
+            <div>
+                <p>{{$user->id}}:{{ $user->name }}:{{ $user->email }}</p>
+            </div>
+            @endforeach
+        @endif
     </div>
 @endsection

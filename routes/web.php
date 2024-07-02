@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
     Route::get('/',[PostsController::class,'index'])->name('posts.index');
+    
+    Route::get('/search',[UserController::class, 'search'])->name('search');
 });
     Route::resource('posts',PostsController::class,['only' => ['store']])->names(['posts.store']);
 
