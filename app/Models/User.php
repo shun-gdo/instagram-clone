@@ -44,13 +44,62 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
     
+    
+    public function loadRelationshipCounts()
+    {
+        $this->loadCount(['posts','followings','followers']);
+    }
+    
+    // Postsモデルとの関係
     public function posts(){
         return $this->hasMany(Posts::class);
     }
     
-    public function loadRelationshipCounts()
-    {
-        $this->loadCount(['posts']);
+    //Userモデルとの関係 
+    public function followings(){
+        return $this->belongsToMany(User::class, 'follow','user_id','follow_id')->withTimestamps();
+    }
+    
+    public function followers(){
+        return $this->belongsToMany(User::class, 'follow','follow_id','user_id')->withTimestamps();
+    }
+    
+    // ユーザをフォローしているか判定
+    public function isFollow($userId){
+        return $this->followings()->where('follow_id',$userId)->exists();
+    }
+    
+    public function follow(int $userId){
+        $exist = $this->isFollow($userId);
+        $its_me = $this->id == $userId;
+        
+        if($exist || $its_me){
+            return false;
+        }else{
+            $this->followings()->attach($userId);
+            return true;
+        }
+    }
+    
+    public function unfollow(int $userId){
+        $exist = $this->isFollow($userId);
+        $its_me = $this->id == $userId;
+        
+        if($exist && !$its_me){
+            $this->followings()->detach($userId);
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public function feedPosts(){
+        // フォローしているユーザのid配列を作成
+        $userIds = $this->followings()->pluck('user_id')->toArray();
+        
+        $userIds[] = $this->id;
+        
+        return Posts::whereIn('user_id',$userIds);
     }
     
 }

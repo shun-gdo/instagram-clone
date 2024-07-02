@@ -17,8 +17,7 @@ class PostsController extends Controller
             // 認証済みユーザーを取得
             $user = \Auth::user();
             // ユーザーの投稿の一覧を作成日時の降順で取得
-            // （後のChapterで他ユーザーの投稿も取得するように変更しますが、現時点ではこのユーザーの投稿のみ取得します）
-            $posts = $user->posts()->orderBy('created_at', 'desc')->paginate(10);
+            $posts = $user->feedPosts()->orderBy('created_at', 'desc')->paginate(10);
 
             $data = [
                 'user' => $user,
