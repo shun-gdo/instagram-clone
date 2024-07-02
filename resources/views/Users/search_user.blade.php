@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div>
-        <form action="{{ route('search') }}" method="GET">
+        <form action="{{ route('search') }}" method="GET" calss="mb-4">
         <label class="input input-bordered flex justify-between items-center gap-2">
             @if(isset($initilaValue))
             <input type="text" class="grow" placeholder="Search" value="{{ $initilaValue }}" />
@@ -23,10 +23,14 @@
         
         @if(isset($users))
             @foreach ($users as $user)
-            <div>
-                <p>{{$user->id}}:{{ $user->name }}:{{ $user->email }}</p>
+            <div class="h-16 px-3 font-bold border border-gray rounded grid grid-cols-6 gap-4 items-center">
+                <div class="col-span-1">{{ $user->id }}</div>
+                <div class="col-span-3">{{ $user->name }} <span class="inline text-gray-400">( {{ $user->email }} )</span></div>
+                <div class="btn btn-sm col-span-1 col-end-7">Follow</div>
             </div>
             @endforeach
+        @else
+            <p>No users found.</p>
         @endif
     </div>
 @endsection
