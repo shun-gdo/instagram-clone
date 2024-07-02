@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Microposts</title>
+    <title>instagram clone</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @vite('resources/css/app.css')
@@ -12,9 +12,9 @@
 <body>
 
     {{-- ナビゲーションバー --}}
-    @include('layouts.navigation')
+    @include('commons.navbar')
 
-    <div class="container mx-auto">
+    <div class="container mx-auto max-w-4xl">
 
         @yield('content')
     </div>
