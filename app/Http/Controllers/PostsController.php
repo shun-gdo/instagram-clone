@@ -26,7 +26,7 @@ class PostsController extends Controller
         }
         
         // dashboardビューでそれらを表示
-        return view('dashboard',[
+        return view('index',[
             'user' => $user,
             'posts'=>$posts,
             ]);

@@ -13,6 +13,7 @@
                             </figure>
                             
                             <div class="card-body">
+                                <p>user : {{ $user->name }}</p>
                                 <p>{{ $post->caption }}</p>
                                 <div class="card-actions justify-end">
                                     <button class="btn btn-secondary">Favorite</button>

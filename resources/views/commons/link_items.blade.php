@@ -1,6 +1,6 @@
 @if (Auth::check())
 
-    <li><a class="link link-hover" href="{{ route('index') }}">Users</a></li>
+    <li><a class="link link-hover" href="{{ route('posts.index') }}">Posts timeline</a></li>
 
     <li><a class="link link-hover" href="{{ route('searchUser') }}">Search Users</a></li>
 
