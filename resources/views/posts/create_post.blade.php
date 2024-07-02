@@ -1,4 +1,4 @@
-<button class="btn" onclick="create_post_modal.showModal()">open modal</button>
+<button class="btn btn-neutral rouded-full font-bold text-lg fixed bottom-0 right-0 mb-5" onclick="create_post_modal.showModal()">+</button>
 <dialog id="create_post_modal" class="modal">
   <div class="modal-box bg-white rounded px-7 relative">
     <h3 class="text-lg font-bold">Create post form</h3>
