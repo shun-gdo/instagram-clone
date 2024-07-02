@@ -3,7 +3,6 @@
 @section('content')
     <!--＊投稿できるようになり次第追加:投稿があればforeachで表示-->
     @if(true)
-        <p>ここに投稿一覧が表示されます</p>
         @include('posts.posts')
     @else
         <div class="prose hero bg-base-200 mx-auto max-w-full rounded">
@@ -17,6 +16,6 @@
         </div>
     @endif
    
-            @include('posts.create_post')
+        @include('posts.create_post')
 
 @endsection

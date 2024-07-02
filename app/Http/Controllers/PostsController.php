@@ -49,7 +49,7 @@ class PostsController extends Controller
 
         $request->user()->posts()->create([
             'user_id' => $user->id,
-            'caption' => $request->caption,
+            'caption' => $request->input('caption'),
             'img_name' => $img_name,
             ]);
     

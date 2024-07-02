@@ -2,19 +2,23 @@
     @if (isset($posts))
         <ul class="list-none">
             @foreach ($posts as $post)
-                <li class="flex items-start gap-x-2 mb-4">
-                    {{-- 投稿の所有者のメールアドレスをもとにGravatarを取得して表示 --}}
-                   
-                    <div>
-
-                        <div>
-                            {{-- 投稿内容 --}}
-                            <p class="mb-0">{{ ($post->caption) }}</p>
-                            <img src="{{ asset('/storage/images/'.$post->img_name) }}" />
+                <li class="flex items-start justify-center gap-x-2 mb-4">
+                    
+                        <div class="card bg-base-100 w-3/5 shadow-xl">
+                            
+                            <figure>
+                                
+                                <img src="{{ asset('/storage/images/'.$post->img_name) }}"
+                                class="object-cover aspect-square w-full h-" />
+                            </figure>
+                            
+                            <div class="card-body">
+                                <p>{{ $post->caption }}</p>
+                                <div class="card-actions justify-end">
+                                    <button class="btn btn-secondary">Favorite</button>
+                                </div>
+                            </div>
                         </div>
-                        
-                        
-                    </div>
 
                 </li>
             @endforeach
