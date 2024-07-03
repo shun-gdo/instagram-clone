@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserFollowController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,12 @@ Route::middleware('auth')->group(function () {
     
     Route::prefix('users/{id}')->group(function(){
        Route::get('/',[UserController::class,'show'])->name('users.show'); 
+       
+       Route::post('follow', [UserFollowController::class, 'store'])->name('user.follow');
+       Route::delete('unfollow', [UserFollowController::class, 'destroy'])->name('user.unfollow');
+    //   Route::get('followings', [UsersController::class, 'followings'])->name('users.followings');
+    //   Route::get('followers', [UsersController::class, 'followers'])->name('users.followers');
+    //   Route::get('favorites', [UsersController::class, 'favorites'])->name('users.favorites');
     });
 });
     Route::resource('posts',PostsController::class,['only' => ['store']])->names(['posts.store']);

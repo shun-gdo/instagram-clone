@@ -2,7 +2,7 @@
 
 @section('content')
     <!--＊投稿できるようになり次第追加:投稿があればforeachで表示-->
-    @if(true)
+    @if(isset($posts))
         @include('posts.posts')
     @else
         <div class="prose hero bg-base-200 mx-auto max-w-full rounded">

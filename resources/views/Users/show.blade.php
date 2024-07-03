@@ -1,8 +1,14 @@
 @extends('layouts.app')
 @section('content')
     <div class="w-3/5 mx-auto grid grid-cols-3 gap-4">
-        <div class="col-span-3">
-            {{ $user->name }} <span>{{ $user->email }}</span>
+        <div class="col-span-3 flex justify-between items-center">
+            <div class="font-bold">
+                {{ $user->name }} <span class="text-gray-400">({{ $user->email }})</span>    
+            </div>
+            <div>
+                @include('Users.user_follow_button')
+            </div>
+            
         </div>
         @foreach ($posts as $post)
             <div class="relative rounded">
