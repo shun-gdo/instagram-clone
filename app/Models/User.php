@@ -95,8 +95,7 @@ class User extends Authenticatable
     
     public function feedPosts(){
         // フォローしているユーザのid配列を作成
-        $userIds = $this->followings()->pluck('user_id')->toArray();
-        
+        $userIds = $this->followings()->pluck('users.id')->toArray();
         $userIds[] = $this->id;
         
         return Posts::whereIn('user_id',$userIds);

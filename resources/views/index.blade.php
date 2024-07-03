@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <!--＊投稿できるようになり次第追加:投稿があればforeachで表示-->
     @if(isset($posts))
         @include('posts.posts')
     @else

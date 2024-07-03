@@ -7,20 +7,18 @@
                         <div class="card bg-base-100 w-3/5 shadow-xl">
                             
                             <figure>
-                                
                                 <img src="{{ asset('/storage/images/'.$post->img_name) }}"
                                 class="object-cover aspect-square w-full h-" />
                             </figure>
                             
                             <div class="card-body">
-                                <p>user : {{ $user->name }}</p>
+                                <p>{{ $user->name }}<span>( {{ $user->email }} )</span></p>
                                 <p>{{ $post->caption }}</p>
                                 <div class="card-actions justify-end">
                                     <button class="btn btn-secondary">Favorite</button>
                                 </div>
                             </div>
                         </div>
-
                 </li>
             @endforeach
         </ul>
