@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
     <div>
-        <form action="{{ route('search') }}" method="GET" calss="mb-4">
+        <form action="{{ route('search') }}" method="GET" class="mb-4">
         <label class="input input-bordered flex justify-between items-center gap-2">
-            @if(isset($initilaValue))
-            <input type="text" class="grow" placeholder="Search" value="{{ $initilaValue }}" />
+            @if(isset($initialValue))
+            <input type="text" class="grow" placeholder="Search" value="{{ $initialValue }}" />
             @else
             <input name="search" type="text" class="grow" placeholder="Search" />
             @endif
@@ -29,8 +29,6 @@
                 <div class="btn btn-sm col-span-1 col-end-7">Follow</div>
             </div>
             @endforeach
-        @else
-            <p>No users found.</p>
         @endif
     </div>
 @endsection
