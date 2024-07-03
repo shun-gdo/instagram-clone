@@ -3,7 +3,7 @@
         <div class="card bg-base-200 w-3/5 ml-auto mr-auto shadow-xl">
             <div class="card-body font-bold">
                 <a href="{{ route('users.show',$user->id) }}">
-                    {{ $user->name }} <span class="text-gray-400">({{ $user->email }})</span>    
+                    {{ $post->user->name }} <span class="text-gray-400">({{ $post->user->email }})</span>    
                 </a>
             </div>
             <figure>
@@ -18,7 +18,8 @@
                     <div>favorite counts</div>
                 </div>
 
-                <p>{{ $post->caption }}</p>
+                <p>{!! nl2br(e($post->caption)) !!}</p></p>
+                <p class="text-gray-400">{{ $post->created_at->format('Y年m月d日') }}</p>
             </div>
         </div>
     </div>
