@@ -101,6 +101,16 @@ class User extends Authenticatable
         return Posts::whereIn('user_id',$userIds);
     }
     
+    public function followingsCount(){
+        $userIds = $this->followings()->pluck('users.id')->toArray();
+        return count($userIds);
+    }
+    
+    public function followersCount(){
+        $userIds = $this->followers()->pluck('users.id')->toArray();
+        return count($userIds);
+    }
+    
     public function scopeSearch($query,$searchTerm){
         return $query->where(function($query) use ($searchTerm) {
             $query->where('name', 'like', '%' . $searchTerm . '%')

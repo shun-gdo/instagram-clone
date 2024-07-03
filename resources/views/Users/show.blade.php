@@ -6,7 +6,13 @@
                 {{ $user->name }} <span class="text-gray-400">({{ $user->email }})</span>    
             </div>
             <div>
-                @include('Users.user_follow_button')
+                @if(Auth::id() == $user->id)
+                    @include('Users.related_users')
+                @else
+                    @include('Users.user_follow_button')
+                @endif
+                
+                
             </div>
             
         </div>

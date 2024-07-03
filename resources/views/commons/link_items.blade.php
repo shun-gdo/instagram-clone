@@ -3,6 +3,8 @@
     <li><a class="link link-hover" href="{{ route('posts.index') }}">Posts timeline</a></li>
 
     <li><a class="link link-hover" href="{{ route('searchUser') }}">Search Users</a></li>
+    
+    <li><a class="link link-hover" href="{{ route('users.show', Auth::id()) }}">Account</a></li>
 
     <li><a class="link link-hover" href="#" onclick="event.preventDefault();this.closest('form').submit();">Logout</a></li>
 @else
