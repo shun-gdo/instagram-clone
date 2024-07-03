@@ -23,4 +23,14 @@ class UserController extends Controller
             return view('/Users/search_user');
         }
     }
+    
+    public function show(String $id){
+        $user = User::findOrFail($id);
+        $posts = $user->posts()->orderBy('created_at','desc')->paginate(10);
+        
+        return view('/Users/show',[
+            'user' => $user,
+            'posts' => $posts,
+        ]);
+    }
 }

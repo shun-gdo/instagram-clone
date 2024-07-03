@@ -37,6 +37,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/',[PostsController::class,'index'])->name('posts.index');
     
     Route::get('/search',[UserController::class, 'search'])->name('search');
+    
+    Route::prefix('users/{id}')->group(function(){
+       Route::get('/',[UserController::class,'show'])->name('users.show'); 
+    });
 });
     Route::resource('posts',PostsController::class,['only' => ['store']])->names(['posts.store']);
 
