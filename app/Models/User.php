@@ -47,7 +47,7 @@ class User extends Authenticatable
     
     public function loadRelationshipCounts()
     {
-        $this->loadCount(['posts','followings','followers']);
+        $this->loadCount(['posts','followings','followers','favorites']);
     }
     
     // Postsモデルとの関係
@@ -62,6 +62,10 @@ class User extends Authenticatable
     
     public function followers(){
         return $this->belongsToMany(User::class, 'follow','follow_id','user_id')->withTimestamps();
+    }
+    
+    public function favorites(){
+        return $this->belongsToMany(Posts::class,'favorites','user_id','post_id')->withTimestamps();
     }
     
     // ユーザをフォローしているか判定
@@ -117,6 +121,32 @@ class User extends Authenticatable
                   ->orWhere('email', 'like', '%' . $searchTerm . '%')
                   ->orWhere('id', 'like', '%' . $searchTerm . '%');
         });
+    }
+    
+    public function isFavorited(int $postId){
+        return $this->favorites()->where('post_id',$postId)->exists();
+    }
+    
+    public function favorite(int $postId){
+        $exist = $this->isFavorited($postId);
+        
+        if($exist){
+            return false;
+        }else{
+            $this->favorites()->attach($postId);
+            return true;  
+        }
+    }
+    
+    public function unfavorite(int $postId){
+        $exist = $this->isFavorited($postId);
+        
+        if($exist){
+            $this->favorites()->detach($postId);
+            return true;
+        }else{
+            return false;  
+        }
     }
     
 }
