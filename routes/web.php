@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserFollowController;
+use App\Http\Controllers\FavoritePostsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +24,7 @@ Route::get('/', function () {
 
 Route::get('/', function () {
     return view('index');
-})->middleware(['auth', 'verified'])->name('index');
+})->middleware(['auth'])->name('index');
 
 Route::get('/searchUser', function () {
     return view('Users/search_user');
@@ -48,7 +49,10 @@ Route::middleware('auth')->group(function () {
     //   Route::get('followers', [UsersController::class, 'followers'])->name('users.followers');
     //   Route::get('favorites', [UsersController::class, 'favorites'])->name('users.favorites');
     });
-});
+    // Route::resource('favorite',FavoritePostsController::class,['only' => ['store','destroy']])->names(['favorite.store','favorite.destroy']);
+    Route::post('favorite/{post_id}',[FavoritePostsController::class,'store'])->name('favorite.store');
+    Route::delete('favorite/{post_id}',[FavoritePostsController::class,'destroy'])->name('favorite.destroy');
     Route::resource('posts',PostsController::class,['only' => ['store']])->names(['posts.store']);
+});
 
 require __DIR__.'/auth.php';
