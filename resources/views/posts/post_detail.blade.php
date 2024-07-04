@@ -1,17 +1,18 @@
+@extends('layouts.app')
+
+@section('content')
 @if(isset($post))
     <div class="my-4">
         <div class="card bg-base-200 w-3/5 ml-auto mr-auto shadow-xl">
             <div class="card-body font-bold">
                 <a href="{{ route('users.show',$user->id) }}">
-                    {{ $post->user->name }} <span class="text-gray-400">({{ $post->user->email }})</span>    
+                    {{ $user->name }} <span class="text-gray-400">({{ $user->email }})</span>    
                 </a>
             </div>
-            <a href="{{ route('posts.show',$post->id) }}">
-                <figure>
-                    <img src="{{ asset('/storage/images/'.$post->img_name) }}"
-                        class="object-cover aspect-square w-full" />
-                </figure>
-            </a>
+            <figure>
+                <img src="{{ asset('/storage/images/'.$post->img_name) }}"
+                    class="object-cover aspect-square w-full" />
+            </figure>
             <div class="card-body">
                 <div class="flex items-start">
                     @if($user->isFavorited($post->id))
@@ -44,5 +45,6 @@
             </div>
         </div>
     </div>
-    <hr>
 @endif
+
+@endsection

@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
     //   Route::get('followers', [UsersController::class, 'followers'])->name('users.followers');
     //   Route::get('favorites', [UsersController::class, 'favorites'])->name('users.favorites');
     });
+    Route::resource('posts',PostsController::class,['only' => ['show','delete']])->names(['posts.show','posts.destroy']);
     // Route::resource('favorite',FavoritePostsController::class,['only' => ['store','destroy']])->names(['favorite.store','favorite.destroy']);
     Route::post('favorite/{post_id}',[FavoritePostsController::class,'store'])->name('favorite.store');
     Route::delete('favorite/{post_id}',[FavoritePostsController::class,'destroy'])->name('favorite.destroy');

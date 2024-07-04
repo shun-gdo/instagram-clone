@@ -24,7 +24,7 @@ class PostsController extends Controller
             ];
         }
         
-        // dashboardビューでそれらを表示
+        // index
         return view('index',[
             'user' => $user,
             'posts'=>$posts,
@@ -52,6 +52,18 @@ class PostsController extends Controller
             ]);
     
         return back();
+    }
+    
+    public function show(string $postId){
+        
+        $user = \Auth::user();
+        $post = Posts::findOrFail(intval($postId));
+        
+        return view('posts/post_detail',[
+            'user' => $user,
+            'post' => $post,
+        ]);
+        
     }
     
 }
