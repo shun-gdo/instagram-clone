@@ -11,7 +11,7 @@
                     class="object-cover aspect-square w-full" />
             </figure>
             <div class="card-body">
-                <div class="flex items-center">
+                <div class="flex items-start">
                     @if($user->isFavorited($post->id))
                     <form method="POST" action="{{ route('favorite.destroy',['post_id'=>$post->id]) }}">
                         @csrf
