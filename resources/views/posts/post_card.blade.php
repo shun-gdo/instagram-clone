@@ -34,7 +34,7 @@
                     </form>
                     @endif
                     
-                    <div>favorite counts</div>
+                    <div>{{ $post->favorite_count() }}</div>
                 </div>
 
                 <p>{!! nl2br(e($post->caption)) !!}</p></p>

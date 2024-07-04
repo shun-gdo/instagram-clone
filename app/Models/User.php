@@ -149,4 +149,9 @@ class User extends Authenticatable
         }
     }
     
+    // public function favoriteCount($postId){
+    //     $post = $this->posts()->findOrFail($postId);
+    //     $post->
+    // }
+    
 }
