@@ -5,8 +5,8 @@
     <div class="my-4">
         <div class="card bg-base-200 w-3/5 ml-auto mr-auto shadow-xl">
             <div class="card-body font-bold">
-                <a href="{{ route('users.show',$user->id) }}">
-                    {{ $user->name }} <span class="text-gray-400">({{ $user->email }})</span>    
+                <a href="{{ route('users.show',$post->user()->id) }}">
+                    {{ $post->user()->name }} <span class="text-gray-400">({{ $post->user()->email }})</span>    
                 </a>
             </div>
             <figure>
@@ -15,7 +15,7 @@
             </figure>
             <div class="card-body">
                 <div class="flex items-start">
-                    @if($user->isFavorited($post->id))
+                    @if($post->user()->isFavorited($post->id))
                     <form method="POST" action="{{ route('favorite.destroy',['post_id'=>$post->id]) }}">
                         @csrf
                         @method('DELETE')
@@ -42,7 +42,15 @@
 
                 <p>{!! nl2br(e($post->caption)) !!}</p></p>
                 <p class="text-gray-400">{{ $post->created_at->format('Y年m月d日') }}</p>
+                 @if(Auth::id() == $post->user()->id)
+                <form action="{{ route('posts.destroy',$post->id) }}" class="flex justify-end">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-error">DELETE POST</button>
+                </form>
+                @endif
             </div>
+       
         </div>
     </div>
 @endif

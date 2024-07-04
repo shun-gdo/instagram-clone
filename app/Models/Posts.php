@@ -20,10 +20,6 @@ class Posts extends Model
     }
     
     public function favorite_count(){
-        // $favorite_users = $this->belongsToMany(User::class,'favorites','post_id','user_id');
-        // $favorite_users_id = $favorite_users->pluck('user_id')->toArray();
-        
-        // return count($favorite_users_id);
         return $this->favorites()->count();
     }
     
