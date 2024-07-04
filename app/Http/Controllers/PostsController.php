@@ -57,6 +57,7 @@ class PostsController extends Controller
     public function show(string $postId){
         
         $user = \Auth::user();
+        $user_id = \Auth::id();
         $post = Posts::findOrFail(intval($postId));
         
         return view('posts/post_detail',[
@@ -66,12 +67,11 @@ class PostsController extends Controller
         
     }
     
-    public function destroy(string $postId){
+    public function destroy($postId){
         $post = Posts::findOrFail($postId);
-        
-        if(\Auth::id() === $post->user_id){
+        if(\Auth::id() === $post->user->id){
             $post->delete();
-            return back();
+            return redirect('/');
         }
         
         return back()->with('Delete Failed');
